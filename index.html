@@ -1,215 +1,1220 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratório Virtual de Física Matemática</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Jogo educativo que integra matemática e física através de tecnologias assistivas">
+    <title>MatemáticaInclusiva - Tecnologias Assistivas na Educação</title>
+    <style>
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+            
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+            
+            /* Background color tokens (Light Mode) */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+            
+            /* Semantic Color Tokens */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            
+            /* Typography */
+            --font-family-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            
+            /* Spacing */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            
+            /* Border Radius */
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Accessibility Settings */
+            --font-scale: 1;
+            --contrast-mode: normal;
+        }
+        
+        [data-color-scheme="high-contrast"] {
+            --color-background: var(--color-black);
+            --color-surface: var(--color-charcoal-800);
+            --color-text: var(--color-white);
+            --color-text-secondary: var(--color-gray-200);
+            --color-primary: var(--color-teal-300);
+            --color-primary-hover: var(--color-teal-400);
+            --color-border: var(--color-white);
+            --color-card-border: var(--color-white);
+            --color-btn-primary-text: var(--color-black);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: calc(var(--font-size-base) * var(--font-scale));
+            font-family: var(--font-family-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+        
+        body {
+            min-height: 100vh;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-20);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-48);
+            padding: var(--space-32);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-card-border);
+        }
+        
+        .header h1 {
+            font-size: calc(var(--font-size-4xl) * var(--font-scale));
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+        }
+        
+        .header p {
+            font-size: calc(var(--font-size-xl) * var(--font-scale));
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+        
+        .accessibility-toolbar {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-32);
+            flex-wrap: wrap;
+        }
+        
+        .toolbar-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-12) var(--space-20);
+            background: var(--color-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            font-weight: var(--font-weight-medium);
+            font-size: calc(var(--font-size-base) * var(--font-scale));
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            text-decoration: none;
+        }
+        
+        .toolbar-btn:hover {
+            background: var(--color-secondary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .toolbar-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .toolbar-btn.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+        
+        .main-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-24);
+            margin-bottom: var(--space-48);
+        }
+        
+        .nav-card {
+            background: var(--color-surface);
+            border: 3px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            background: var(--color-bg-1);
+        }
+        
+        .nav-card:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .nav-card .icon {
+            font-size: calc(var(--font-size-4xl) * 1.5 * var(--font-scale));
+            margin-bottom: var(--space-16);
+            color: var(--color-primary);
+        }
+        
+        .nav-card h3 {
+            font-size: calc(var(--font-size-2xl) * var(--font-scale));
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-12);
+            color: var(--color-text);
+        }
+        
+        .nav-card p {
+            font-size: calc(var(--font-size-base) * var(--font-scale));
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+        
+        .section {
+            display: none;
+            background: var(--color-surface);
+            border: 2px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            margin-bottom: var(--space-32);
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-32);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--space-16);
+        }
+        
+        .section-title {
+            font-size: calc(var(--font-size-3xl) * var(--font-scale));
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+        }
+        
+        .back-btn {
+            padding: var(--space-12) var(--space-24);
+            background: var(--color-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            font-size: calc(var(--font-size-base) * var(--font-scale));
+        }
+        
+        .back-btn:hover {
+            background: var(--color-secondary-hover);
+        }
+        
+        .back-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        /* Calculator Styles */
+        .calculator {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .calc-display {
+            width: 100%;
+            height: 80px;
+            font-size: calc(var(--font-size-3xl) * var(--font-scale));
+            text-align: right;
+            padding: var(--space-16);
+            background: var(--color-background);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-20);
+            color: var(--color-text);
+        }
+        
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-12);
+        }
+        
+        .calc-btn {
+            height: 70px;
+            font-size: calc(var(--font-size-xl) * var(--font-scale));
+            font-weight: var(--font-weight-semibold);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+        
+        .calc-btn:hover {
+            background: var(--color-secondary);
+            transform: scale(1.05);
+        }
+        
+        .calc-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .calc-btn.operator {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+        
+        .calc-btn.operator:hover {
+            background: var(--color-primary-hover);
+        }
+        
+        .calc-btn.clear {
+            background: var(--color-error);
+            color: white;
+        }
+        
+        .calc-btn.clear:hover {
+            background: var(--color-red-400);
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            text-align: center;
+        }
+        
+        .quiz-level-selector {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-32);
+            flex-wrap: wrap;
+        }
+        
+        .level-btn {
+            padding: var(--space-16) var(--space-24);
+            font-size: calc(var(--font-size-lg) * var(--font-scale));
+            font-weight: var(--font-weight-semibold);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            background: var(--color-secondary);
+            color: var(--color-text);
+            min-width: 120px;
+        }
+        
+        .level-btn:hover {
+            background: var(--color-secondary-hover);
+        }
+        
+        .level-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .level-btn.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+        
+        .quiz-content {
+            display: none;
+        }
+        
+        .quiz-content.active {
+            display: block;
+        }
+        
+        .question-card {
+            background: var(--color-bg-3);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            margin-bottom: var(--space-32);
+            font-size: calc(var(--font-size-xl) * var(--font-scale));
+            line-height: var(--line-height-normal);
+        }
+        
+        .question-text {
+            margin-bottom: var(--space-24);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+        }
+        
+        .answer-input {
+            width: 200px;
+            height: 60px;
+            font-size: calc(var(--font-size-2xl) * var(--font-scale));
+            text-align: center;
+            padding: var(--space-12);
+            border: 3px solid var(--color-border);
+            border-radius: var(--radius-base);
+            margin-right: var(--space-16);
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+        
+        .answer-input:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .submit-btn {
+            padding: var(--space-16) var(--space-32);
+            font-size: calc(var(--font-size-lg) * var(--font-scale));
+            font-weight: var(--font-weight-semibold);
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .submit-btn:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .feedback {
+            margin-top: var(--space-24);
+            padding: var(--space-20);
+            border-radius: var(--radius-base);
+            font-size: calc(var(--font-size-lg) * var(--font-scale));
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .feedback.correct {
+            background: var(--color-bg-3);
+            color: var(--color-success);
+            border: 2px solid var(--color-success);
+        }
+        
+        .feedback.incorrect {
+            background: var(--color-bg-4);
+            color: var(--color-error);
+            border: 2px solid var(--color-error);
+        }
+        
+        .score {
+            font-size: calc(var(--font-size-2xl) * var(--font-scale));
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-24);
+            color: var(--color-primary);
+        }
+        
+        /* Settings Styles */
+        .settings-grid {
+            display: grid;
+            gap: var(--space-24);
+        }
+        
+        .setting-item {
+            background: var(--color-bg-1);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-24);
+        }
+        
+        .setting-label {
+            display: block;
+            font-size: calc(var(--font-size-lg) * var(--font-scale));
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-12);
+            color: var(--color-text);
+        }
+        
+        .setting-control {
+            display: flex;
+            gap: var(--space-12);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .setting-btn {
+            padding: var(--space-8) var(--space-16);
+            font-size: calc(var(--font-size-base) * var(--font-scale));
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+        
+        .setting-btn:hover {
+            background: var(--color-secondary);
+        }
+        
+        .setting-btn:focus {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .setting-btn.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+        
+        /* Range Input Styles */
+        .volume-slider {
+            width: 200px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background: var(--color-secondary);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-full);
+            background: var(--color-primary);
+            cursor: pointer;
+        }
+        
+        .volume-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-full);
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .volume-display {
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            min-width: 40px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-12);
+            }
+            
+            .main-nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .accessibility-toolbar {
+                justify-content: center;
+            }
+            
+            .toolbar-btn {
+                font-size: calc(var(--font-size-sm) * var(--font-scale));
+                padding: var(--space-8) var(--space-12);
+            }
+            
+            .calc-buttons {
+                gap: var(--space-8);
+            }
+            
+            .calc-btn {
+                height: 60px;
+                font-size: calc(var(--font-size-lg) * var(--font-scale));
+            }
+        }
+        
+        /* High Contrast Mode Additional Styles */
+        [data-color-scheme="high-contrast"] .nav-card:hover {
+            background: var(--color-charcoal-700);
+        }
+        
+        [data-color-scheme="high-contrast"] .calc-btn.operator {
+            background: var(--color-teal-300);
+            color: var(--color-black);
+        }
+        
+        /* Focus improvements for accessibility */
+        button:focus,
+        input:focus,
+        .nav-card:focus {
+            outline: 4px solid var(--color-focus-ring);
+            outline-offset: 3px;
+        }
+        
+        /* Skip to content link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            padding: var(--space-8) var(--space-16);
+            text-decoration: none;
+            border-radius: var(--radius-base);
+            z-index: 1000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Principal -->
-    <header class="header">
-        <div class="header-content">
-            <h1 class="title">🔬 Laboratório Virtual de Física Matemática</h1>
-            <p class="subtitle">Tecnologia Assistiva para Educação Inclusiva</p>
-            <div class="accessibility-toolbar">
-                <button id="contrastToggle" class="accessibility-btn" title="Alternar Alto Contraste">🎨 Contraste</button>
-                <button id="fontIncrease" class="accessibility-btn" title="Aumentar Fonte">🔍+ Fonte</button>
-                <button id="fontDecrease" class="accessibility-btn" title="Diminuir Fonte">🔍- Fonte</button>
-                <button id="helpBtn" class="accessibility-btn" title="Ajuda">❓ Ajuda</button>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <div class="container">
+        <header class="header">
+            <h1>📚 MatemáticaInclusiva</h1>
+            <p>Tecnologias Assistivas para o Ensino de Matemática - Uma Ferramenta de Educação Inclusiva</p>
+        </header>
+        
+        <nav class="accessibility-toolbar" role="toolbar" aria-label="Ferramentas de Acessibilidade">
+            <button class="toolbar-btn" onclick="adjustFontSize('decrease')" aria-label="Diminuir tamanho da fonte">
+                <span aria-hidden="true">🔍-</span> Fonte Menor
+            </button>
+            <button class="toolbar-btn" onclick="adjustFontSize('increase')" aria-label="Aumentar tamanho da fonte">
+                <span aria-hidden="true">🔍+</span> Fonte Maior
+            </button>
+            <button class="toolbar-btn" onclick="toggleContrast()" aria-label="Alternar modo de alto contraste">
+                <span aria-hidden="true">🌗</span> Alto Contraste
+            </button>
+            <button class="toolbar-btn" onclick="readPageTitle()" aria-label="Ler título da página">
+                <span aria-hidden="true">🔊</span> Ler Página
+            </button>
+        </nav>
+        
+        <main id="main-content">
+            <div id="home-section">
+                <nav class="main-nav" role="navigation" aria-label="Funcionalidades principais">
+                    <div class="nav-card" tabindex="0" onclick="showSection('calculator')" onkeydown="handleCardKeyPress(event, 'calculator')" role="button" aria-label="Abrir Calculadora Falante">
+                        <div class="icon" aria-hidden="true">🧮</div>
+                        <h3>Calculadora Falante</h3>
+                        <p>Calculadora com síntese de voz que lê números, operações e resultados em voz alta</p>
+                    </div>
+                    
+                    <div class="nav-card" tabindex="0" onclick="showSection('quiz')" onkeydown="handleCardKeyPress(event, 'quiz')" role="button" aria-label="Abrir Jogo de Quiz Matemático">
+                        <div class="icon" aria-hidden="true">🎯</div>
+                        <h3>Quiz Matemático</h3>
+                        <p>Jogos interativos com diferentes níveis de dificuldade e feedback sonoro</p>
+                    </div>
+                    
+                    <div class="nav-card" tabindex="0" onclick="showSection('settings')" onkeydown="handleCardKeyPress(event, 'settings')" role="button" aria-label="Abrir Configurações de Acessibilidade">
+                        <div class="icon" aria-hidden="true">⚙️</div>
+                        <h3>Configurações</h3>
+                        <p>Personalize aspectos de acessibilidade como volume, velocidade da fala e contraste</p>
+                    </div>
+                </nav>
             </div>
-        </div>
-    </header>
-
-    <!-- Menu de Navegação -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <button id="homeBtn" class="nav-btn active">🏠 Início</button>
-            <button id="experimentsBtn" class="nav-btn">🔬 Experimentos</button>
-            <button id="calculatorBtn" class="nav-btn">🧮 Calculadora</button>
-            <button id="aboutBtn" class="nav-btn">ℹ️ Sobre</button>
-        </div>
-    </nav>
-
-    <!-- Container Principal -->
-    <main class="main-container">
-
-        <!-- Tela Inicial -->
-        <section id="homeSection" class="section active">
-            <div class="welcome-card">
-                <h2>Bem-vindo ao Laboratório Virtual!</h2>
-                <p>Explore 4 experimentos que integram <strong>matemática e física</strong> de forma visual e interativa.</p>
-
-                <div class="experiments-grid">
-                    <div class="experiment-card" data-experiment="projectile">
-                        <div class="experiment-icon">🎯</div>
-                        <h3>Lançamento de Projéteis</h3>
-                        <p>Trigonometria + Movimento Parabólico</p>
-                        <div class="formula">y = v₀sen(θ)t - ½gt²</div>
-                    </div>
-
-                    <div class="experiment-card" data-experiment="freefall">
-                        <div class="experiment-icon">⬇️</div>
-                        <h3>Queda Livre</h3>
-                        <p>Equações 2º Grau + Gravidade</p>
-                        <div class="formula">h = ½gt²</div>
-                    </div>
-
-                    <div class="experiment-card" data-experiment="kinetic">
-                        <div class="experiment-icon">⚡</div>
-                        <h3>Energia Cinética</h3>
-                        <p>Potências + Energia</p>
-                        <div class="formula">Ec = ½mv²</div>
-                    </div>
-
-                    <div class="experiment-card" data-experiment="circular">
-                        <div class="experiment-icon">🔄</div>
-                        <h3>Movimento Circular</h3>
-                        <p>Círculo + Força Centrípeta</p>
-                        <div class="formula">F = mv²/r</div>
-                    </div>
+            
+            <!-- Calculator Section -->
+            <section id="calculator-section" class="section" aria-labelledby="calc-title">
+                <div class="section-header">
+                    <h2 id="calc-title" class="section-title">🧮 Calculadora Falante</h2>
+                    <button class="back-btn" onclick="showHome()" aria-label="Voltar ao menu principal">← Voltar</button>
                 </div>
-            </div>
-        </section>
-
-        <!-- Tela de Experimentos -->
-        <section id="experimentsSection" class="section">
-            <div class="experiment-container">
-                <div class="experiment-header">
-                    <h2 id="experimentTitle">Selecione um Experimento</h2>
-                    <button id="backToHome" class="back-btn">← Voltar</button>
-                </div>
-
-                <div class="experiment-content">
-                    <div class="controls-panel">
-                        <h3>Controles</h3>
-                        <div class="control-group" id="controls">
-                            <!-- Controles dinâmicos serão inseridos aqui -->
-                        </div>
-                        <button id="runSimulation" class="run-btn">▶️ Executar Simulação</button>
-                        <button id="resetSimulation" class="reset-btn">🔄 Reiniciar</button>
-                    </div>
-
-                    <div class="visualization-panel">
-                        <canvas id="simulationCanvas" width="600" height="400"></canvas>
-                        <div id="results" class="results-panel">
-                            <h3>Resultados</h3>
-                            <div id="calculationResults"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Calculadora -->
-        <section id="calculatorSection" class="section">
-            <div class="calculator-container">
-                <h2>🧮 Calculadora Científica</h2>
+                
                 <div class="calculator">
-                    <div class="calculator-display">
-                        <input type="text" id="calculatorInput" readonly>
-                    </div>
-                    <div class="calculator-buttons">
-                        <button class="calc-btn clear">C</button>
-                        <button class="calc-btn">±</button>
-                        <button class="calc-btn">%</button>
-                        <button class="calc-btn operator">÷</button>
-
-                        <button class="calc-btn number">7</button>
-                        <button class="calc-btn number">8</button>
-                        <button class="calc-btn number">9</button>
-                        <button class="calc-btn operator">×</button>
-
-                        <button class="calc-btn number">4</button>
-                        <button class="calc-btn number">5</button>
-                        <button class="calc-btn number">6</button>
-                        <button class="calc-btn operator">-</button>
-
-                        <button class="calc-btn number">1</button>
-                        <button class="calc-btn number">2</button>
-                        <button class="calc-btn number">3</button>
-                        <button class="calc-btn operator">+</button>
-
-                        <button class="calc-btn number zero">0</button>
-                        <button class="calc-btn">.</button>
-                        <button class="calc-btn equals">=</button>
-
-                        <button class="calc-btn scientific">sin</button>
-                        <button class="calc-btn scientific">cos</button>
-                        <button class="calc-btn scientific">tan</button>
-                        <button class="calc-btn scientific">π</button>
-                        <button class="calc-btn scientific">√</button>
-                        <button class="calc-btn scientific">x²</button>
+                    <input type="text" id="calc-display" class="calc-display" readonly aria-label="Visor da calculadora" aria-live="polite">
+                    
+                    <div class="calc-buttons" role="group" aria-label="Botões da calculadora">
+                        <button class="calc-btn clear" onclick="clearCalculator()" aria-label="Limpar calculadora">C</button>
+                        <button class="calc-btn" onclick="deleteLast()" aria-label="Apagar último dígito">⌫</button>
+                        <button class="calc-btn operator" onclick="inputOperator('/')" aria-label="Divisão">÷</button>
+                        <button class="calc-btn operator" onclick="inputOperator('*')" aria-label="Multiplicação">×</button>
+                        
+                        <button class="calc-btn" onclick="inputNumber('7')" aria-label="Número sete">7</button>
+                        <button class="calc-btn" onclick="inputNumber('8')" aria-label="Número oito">8</button>
+                        <button class="calc-btn" onclick="inputNumber('9')" aria-label="Número nove">9</button>
+                        <button class="calc-btn operator" onclick="inputOperator('-')" aria-label="Subtração">-</button>
+                        
+                        <button class="calc-btn" onclick="inputNumber('4')" aria-label="Número quatro">4</button>
+                        <button class="calc-btn" onclick="inputNumber('5')" aria-label="Número cinco">5</button>
+                        <button class="calc-btn" onclick="inputNumber('6')" aria-label="Número seis">6</button>
+                        <button class="calc-btn operator" onclick="inputOperator('+')" aria-label="Adição">+</button>
+                        
+                        <button class="calc-btn" onclick="inputNumber('1')" aria-label="Número um">1</button>
+                        <button class="calc-btn" onclick="inputNumber('2')" aria-label="Número dois">2</button>
+                        <button class="calc-btn" onclick="inputNumber('3')" aria-label="Número três">3</button>
+                        <button class="calc-btn operator" onclick="calculate()" aria-label="Calcular resultado" rowspan="2">=</button>
+                        
+                        <button class="calc-btn" onclick="inputNumber('0')" aria-label="Número zero" style="grid-column: span 2;">0</button>
+                        <button class="calc-btn" onclick="inputOperator('.')" aria-label="Vírgula decimal">,</button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Sobre -->
-        <section id="aboutSection" class="section">
-            <div class="about-container">
-                <h2>ℹ️ Sobre o Projeto</h2>
-                <div class="about-content">
-                    <div class="about-card">
-                        <h3>🎯 Objetivo</h3>
-                        <p>Integrar conceitos de matemática e física através de simulações visuais interativas, utilizando tecnologias assistivas para promover educação inclusiva.</p>
+            </section>
+            
+            <!-- Quiz Section -->
+            <section id="quiz-section" class="section" aria-labelledby="quiz-title">
+                <div class="section-header">
+                    <h2 id="quiz-title" class="section-title">🎯 Quiz Matemático</h2>
+                    <button class="back-btn" onclick="showHome()" aria-label="Voltar ao menu principal">← Voltar</button>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="score" id="score-display" aria-live="polite">Pontuação: 0</div>
+                    
+                    <div class="quiz-level-selector" role="group" aria-label="Selecionar nível de dificuldade">
+                        <button class="level-btn active" onclick="setQuizLevel('easy')" aria-label="Nível fácil">Fácil</button>
+                        <button class="level-btn" onclick="setQuizLevel('medium')" aria-label="Nível médio">Médio</button>
+                        <button class="level-btn" onclick="setQuizLevel('hard')" aria-label="Nível difícil">Difícil</button>
                     </div>
-
-                    <div class="about-card">
-                        <h3>♿ Acessibilidade</h3>
-                        <ul>
-                            <li>Alto contraste para baixa visão</li>
-                            <li>Fontes ajustáveis</li>
-                            <li>Navegação por teclado</li>
-                            <li>Interface responsiva</li>
-                            <li>Feedback visual claro</li>
-                        </ul>
+                    
+                    <div id="quiz-easy" class="quiz-content active">
+                        <div class="question-card" id="question-easy">
+                            <div class="question-text" id="question-text-easy">Carregando pergunta...</div>
+                            <div>
+                                <input type="number" id="answer-easy" class="answer-input" placeholder="?" aria-label="Digite sua resposta">
+                                <button class="submit-btn" onclick="checkAnswer('easy')" aria-label="Verificar resposta">Verificar</button>
+                            </div>
+                            <div id="feedback-easy" class="feedback" style="display: none;" aria-live="polite"></div>
+                        </div>
                     </div>
-
-                    <div class="about-card">
-                        <h3>🎓 Contexto Educacional</h3>
-                        <p><strong>Disciplina:</strong> Tecnologias Integradas à Educação</p>
-                        <p><strong>Foco:</strong> Tecnologia Assistiva</p>
-                        <p><strong>Público:</strong> Ensino Fundamental II e Médio</p>
-                        <p><strong>Área:</strong> STEM (Ciências, Tecnologia, Engenharia, Matemática)</p>
+                    
+                    <div id="quiz-medium" class="quiz-content">
+                        <div class="question-card" id="question-medium">
+                            <div class="question-text" id="question-text-medium">Carregando pergunta...</div>
+                            <div>
+                                <input type="number" id="answer-medium" class="answer-input" placeholder="?" aria-label="Digite sua resposta">
+                                <button class="submit-btn" onclick="checkAnswer('medium')" aria-label="Verificar resposta">Verificar</button>
+                            </div>
+                            <div id="feedback-medium" class="feedback" style="display: none;" aria-live="polite"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-hard" class="quiz-content">
+                        <div class="question-card" id="question-hard">
+                            <div class="question-text" id="question-text-hard">Carregando pergunta...</div>
+                            <div>
+                                <input type="number" id="answer-hard" class="answer-input" placeholder="?" aria-label="Digite sua resposta">
+                                <button class="submit-btn" onclick="checkAnswer('hard')" aria-label="Verificar resposta">Verificar</button>
+                            </div>
+                            <div id="feedback-hard" class="feedback" style="display: none;" aria-live="polite"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal de Ajuda -->
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>📖 Como Usar</h2>
-            <div class="help-content">
-                <h3>🎮 Navegação:</h3>
-                <ul>
-                    <li><strong>Tab/Shift+Tab:</strong> Navegar entre elementos</li>
-                    <li><strong>Enter/Space:</strong> Ativar botões</li>
-                    <li><strong>Setas:</strong> Ajustar valores nos controles</li>
-                </ul>
-
-                <h3>🔬 Experimentos:</h3>
-                <ul>
-                    <li>Escolha um experimento na tela inicial</li>
-                    <li>Ajuste os parâmetros usando os controles</li>
-                    <li>Clique em "Executar Simulação"</li>
-                    <li>Observe a animação e os resultados</li>
-                </ul>
-
-                <h3>♿ Acessibilidade:</h3>
-                <ul>
-                    <li><strong>Contraste:</strong> Alterna modo de alto contraste</li>
-                    <li><strong>Fonte:</strong> Aumenta/diminui tamanho do texto</li>
-                    <li><strong>Ajuda:</strong> Mostra estas instruções</li>
-                </ul>
-            </div>
-        </div>
+            </section>
+            
+            <!-- Settings Section -->
+            <section id="settings-section" class="section" aria-labelledby="settings-title">
+                <div class="section-header">
+                    <h2 id="settings-title" class="section-title">⚙️ Configurações de Acessibilidade</h2>
+                    <button class="back-btn" onclick="showHome()" aria-label="Voltar ao menu principal">← Voltar</button>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label class="setting-label">Tamanho da Fonte</label>
+                        <div class="setting-control">
+                            <button class="setting-btn active" onclick="setFontScale(1)" aria-label="Fonte normal">Normal</button>
+                            <button class="setting-btn" onclick="setFontScale(1.2)" aria-label="Fonte grande">Grande</button>
+                            <button class="setting-btn" onclick="setFontScale(1.4)" aria-label="Fonte muito grande">Muito Grande</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">Modo de Contraste</label>
+                        <div class="setting-control">
+                            <button class="setting-btn active" onclick="setContrastMode('normal')" aria-label="Contraste normal">Normal</button>
+                            <button class="setting-btn" onclick="setContrastMode('high')" aria-label="Alto contraste">Alto Contraste</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">Volume da Voz</label>
+                        <div class="setting-control">
+                            <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="0.7" onchange="updateVolume()" aria-label="Controle de volume">
+                            <span id="volume-display" class="volume-display">70%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">Velocidade da Fala</label>
+                        <div class="setting-control">
+                            <button class="setting-btn" onclick="setSpeechRate(0.8)" aria-label="Fala lenta">Lenta</button>
+                            <button class="setting-btn active" onclick="setSpeechRate(1.0)" aria-label="Fala normal">Normal</button>
+                            <button class="setting-btn" onclick="setSpeechRate(1.2)" aria-label="Fala rápida">Rápida</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">Testar Síntese de Voz</label>
+                        <div class="setting-control">
+                            <button class="submit-btn" onclick="testSpeech()" aria-label="Testar voz">🔊 Testar Voz</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <script src="app.js"></script>
+    
+    <script>
+        // Global variables for accessibility settings
+        let currentFontScale = 1;
+        let currentVolume = 0.7;
+        let currentSpeechRate = 1.0;
+        let isHighContrast = false;
+        let currentQuizLevel = 'easy';
+        let score = 0;
+        let currentCalculation = '';
+        
+        // Questions database
+        const questions = {
+            easy: [
+                { question: "Quanto é 5 + 3?", answer: 8, operation: "adição" },
+                { question: "Quanto é 10 - 4?", answer: 6, operation: "subtração" },
+                { question: "Quanto é 2 + 7?", answer: 9, operation: "adição" },
+                { question: "Quanto é 15 - 8?", answer: 7, operation: "subtração" },
+                { question: "Quanto é 6 + 6?", answer: 12, operation: "adição" }
+            ],
+            medium: [
+                { question: "Quanto é 7 × 4?", answer: 28, operation: "multiplicação" },
+                { question: "Quanto é 56 ÷ 8?", answer: 7, operation: "divisão" },
+                { question: "Quanto é 9 × 6?", answer: 54, operation: "multiplicação" },
+                { question: "Quanto é 72 ÷ 9?", answer: 8, operation: "divisão" },
+                { question: "Quanto é 12 × 3?", answer: 36, operation: "multiplicação" }
+            ],
+            hard: [
+                { question: "Maria comprou 3 maçãs por R$ 2,50 cada. Quanto ela gastou?", answer: 7.5, operation: "problema contextualizado" },
+                { question: "João tinha 50 reais e gastou 32 reais no mercado. Quanto sobrou?", answer: 18, operation: "problema contextualizado" },
+                { question: "Ana dividiu 24 balas igualmente entre 6 amigos. Quantas balas cada um recebeu?", answer: 4, operation: "problema contextualizado" },
+                { question: "Pedro comprou 4 cadernos por R$ 3,25 cada. Quanto ele pagou?", answer: 13, operation: "problema contextualizado" },
+                { question: "Uma pizza foi dividida em 8 pedaços. Se foram comidos 5 pedaços, quantos restaram?", answer: 3, operation: "problema contextualizado" }
+            ]
+        };
+        
+        let currentQuestions = {
+            easy: null,
+            medium: null,
+            hard: null
+        };
+        
+        // Text-to-Speech function
+        function speak(text, callback = null) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR';
+                utterance.volume = currentVolume;
+                utterance.rate = currentSpeechRate;
+                utterance.pitch = 1;
+                
+                if (callback) {
+                    utterance.onend = callback;
+                }
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.log('Text-to-speech não suportado neste navegador');
+                if (callback) callback();
+            }
+        }
+        
+        // Accessibility functions
+        function adjustFontSize(action) {
+            if (action === 'increase' && currentFontScale < 1.6) {
+                currentFontScale += 0.2;
+            } else if (action === 'decrease' && currentFontScale > 0.8) {
+                currentFontScale -= 0.2;
+            }
+            
+            document.documentElement.style.setProperty('--font-scale', currentFontScale);
+            speak(`Tamanho da fonte ${action === 'increase' ? 'aumentado' : 'diminuído'}`);
+        }
+        
+        function toggleContrast() {
+            isHighContrast = !isHighContrast;
+            document.documentElement.setAttribute('data-color-scheme', isHighContrast ? 'high-contrast' : 'normal');
+            speak(isHighContrast ? 'Modo de alto contraste ativado' : 'Modo de contraste normal ativado');
+        }
+        
+        function readPageTitle() {
+            const title = document.querySelector('.header h1').textContent;
+            const description = document.querySelector('.header p').textContent;
+            speak(`${title}. ${description}`);
+        }
+        
+        function setFontScale(scale) {
+            currentFontScale = scale;
+            document.documentElement.style.setProperty('--font-scale', scale);
+            
+            // Update active button
+            document.querySelectorAll('.setting-item:first-child .setting-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            speak(`Tamanho da fonte definido para ${scale === 1 ? 'normal' : scale === 1.2 ? 'grande' : 'muito grande'}`);
+        }
+        
+        function setContrastMode(mode) {
+            isHighContrast = mode === 'high';
+            document.documentElement.setAttribute('data-color-scheme', mode === 'high' ? 'high-contrast' : 'normal');
+            
+            // Update active button
+            document.querySelectorAll('.setting-item:nth-child(2) .setting-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            speak(mode === 'high' ? 'Alto contraste ativado' : 'Contraste normal ativado');
+        }
+        
+        function updateVolume() {
+            const slider = document.getElementById('volume-slider');
+            currentVolume = parseFloat(slider.value);
+            document.getElementById('volume-display').textContent = Math.round(currentVolume * 100) + '%';
+            speak(`Volume definido para ${Math.round(currentVolume * 100)} por cento`);
+        }
+        
+        function setSpeechRate(rate) {
+            currentSpeechRate = rate;
+            
+            // Update active button
+            document.querySelectorAll('.setting-item:nth-child(4) .setting-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            speak(`Velocidade da fala definida para ${rate === 0.8 ? 'lenta' : rate === 1.0 ? 'normal' : 'rápida'}`);
+        }
+        
+        function testSpeech() {
+            speak('Esta é uma demonstração da síntese de voz. A ferramenta está funcionando corretamente e pode auxiliar estudantes com diferentes necessidades educacionais no aprendizado de matemática.');
+        }
+        
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide home section
+            document.getElementById('home-section').style.display = 'none';
+            
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const section = document.getElementById(sectionName + '-section');
+            section.classList.add('active');
+            
+            // Speak section name and initialize if needed
+            if (sectionName === 'calculator') {
+                speak('Calculadora Falante aberta. Use os botões para fazer cálculos e ouça os resultados.');
+                initializeCalculator();
+            } else if (sectionName === 'quiz') {
+                speak('Quiz Matemático aberto. Escolha um nível de dificuldade e responda às perguntas.');
+                initializeQuiz();
+            } else if (sectionName === 'settings') {
+                speak('Configurações de Acessibilidade abertas. Personalize a ferramenta conforme suas necessidades.');
+            }
+        }
+        
+        function showHome() {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show home section
+            document.getElementById('home-section').style.display = 'block';
+            
+            speak('Voltando ao menu principal');
+        }
+        
+        function handleCardKeyPress(event, section) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showSection(section);
+            }
+        }
+        
+        // Calculator functions
+        function initializeCalculator() {
+            document.getElementById('calc-display').value = '';
+            currentCalculation = '';
+        }
+        
+        function inputNumber(num) {
+            const display = document.getElementById('calc-display');
+            display.value += num;
+            speak(num);
+        }
+        
+        function inputOperator(op) {
+            const display = document.getElementById('calc-display');
+            const operators = {
+                '+': 'mais',
+                '-': 'menos',
+                '*': 'vezes',
+                '/': 'dividido por',
+                '.': 'vírgula'
+            };
+            
+            display.value += op;
+            speak(operators[op] || op);
+        }
+        
+        function clearCalculator() {
+            document.getElementById('calc-display').value = '';
+            currentCalculation = '';
+            speak('Calculadora limpa');
+        }
+        
+        function deleteLast() {
+            const display = document.getElementById('calc-display');
+            display.value = display.value.slice(0, -1);
+            speak('Último dígito apagado');
+        }
+        
+        function calculate() {
+            const display = document.getElementById('calc-display');
+            let expression = display.value;
+            
+            if (!expression) {
+                speak('Nenhuma operação para calcular');
+                return;
+            }
+            
+            try {
+                // Replace × and ÷ with * and /
+                expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
+                
+                const result = eval(expression);
+                display.value = result;
+                speak(`O resultado é ${result}`);
+            } catch (error) {
+                speak('Erro na operação. Verifique os números digitados.');
+                display.value = 'Erro';
+            }
+        }
+        
+        // Quiz functions
+        function initializeQuiz() {
+            generateNewQuestions();
+            updateScoreDisplay();
+        }
+        
+        function generateNewQuestions() {
+            Object.keys(questions).forEach(level => {
+                const randomIndex = Math.floor(Math.random() * questions[level].length);
+                currentQuestions[level] = questions[level][randomIndex];
+                
+                document.getElementById(`question-text-${level}`).textContent = currentQuestions[level].question;
+                document.getElementById(`answer-${level}`).value = '';
+                document.getElementById(`feedback-${level}`).style.display = 'none';
+            });
+        }
+        
+        function setQuizLevel(level) {
+            currentQuizLevel = level;
+            
+            // Update active button
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show correct quiz content
+            document.querySelectorAll('.quiz-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`quiz-${level}`).classList.add('active');
+            
+            const levelNames = {
+                easy: 'fácil',
+                medium: 'médio',
+                hard: 'difícil'
+            };
+            
+            speak(`Nível ${levelNames[level]} selecionado. ${currentQuestions[level].question}`);
+        }
+        
+        function checkAnswer(level) {
+            const userAnswer = parseFloat(document.getElementById(`answer-${level}`).value);
+            const correctAnswer = currentQuestions[level].answer;
+            const feedbackElement = document.getElementById(`feedback-${level}`);
+            
+            feedbackElement.style.display = 'block';
+            
+            if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+                // Correct answer
+                const points = level === 'easy' ? 10 : level === 'medium' ? 20 : 30;
+                score += points;
+                updateScoreDisplay();
+                
+                feedbackElement.className = 'feedback correct';
+                feedbackElement.textContent = `🎉 Correto! Você ganhou ${points} pontos!`;
+                speak(`Resposta correta! Você ganhou ${points} pontos. Parabéns!`);
+                
+                // Generate new question after a delay
+                setTimeout(() => {
+                    generateNewQuestion(level);
+                }, 2000);
+            } else {
+                // Incorrect answer
+                feedbackElement.className = 'feedback incorrect';
+                feedbackElement.textContent = `❌ Incorreto. A resposta correta é ${correctAnswer}. Tente novamente!`;
+                speak(`Resposta incorreta. A resposta correta é ${correctAnswer}. Tente novamente!`);
+            }
+        }
+        
+        function generateNewQuestion(level) {
+            const randomIndex = Math.floor(Math.random() * questions[level].length);
+            currentQuestions[level] = questions[level][randomIndex];
+            
+            document.getElementById(`question-text-${level}`).textContent = currentQuestions[level].question;
+            document.getElementById(`answer-${level}`).value = '';
+            document.getElementById(`feedback-${level}`).style.display = 'none';
+            
+            speak(`Nova pergunta: ${currentQuestions[level].question}`);
+        }
+        
+        function updateScoreDisplay() {
+            document.getElementById('score-display').textContent = `Pontuação: ${score}`;
+        }
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            // Support Enter key for buttons
+            if (event.key === 'Enter' && event.target.classList.contains('nav-card')) {
+                event.target.click();
+            }
+            
+            // Calculator keyboard support
+            if (document.getElementById('calculator-section').classList.contains('active')) {
+                const key = event.key;
+                if ('0123456789'.includes(key)) {
+                    inputNumber(key);
+                } else if ('+-*/.'.includes(key)) {
+                    inputOperator(key);
+                } else if (key === 'Enter' || key === '=') {
+                    calculate();
+                } else if (key === 'Escape') {
+                    clearCalculator();
+                } else if (key === 'Backspace') {
+                    deleteLast();
+                }
+            }
+        });
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            speak('Bem-vindo ao MatemáticaInclusiva. Uma ferramenta de tecnologias assistivas para o ensino de matemática. Use as ferramentas de acessibilidade na parte superior da página para personalizar sua experiência.');
+            
+            // Initialize quiz questions
+            generateNewQuestions();
+            
+            // Add click handlers for Enter key on answer inputs
+            ['easy', 'medium', 'hard'].forEach(level => {
+                document.getElementById(`answer-${level}`).addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        checkAnswer(level);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
